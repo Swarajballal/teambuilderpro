@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import Container from '@/components/ui/container';
 import { Button } from '@/components/ui/button';
-import { ShoppingCartIcon, Sun, Moon, Menu } from 'lucide-react';
+import { UserPlus, Sun, Moon, Menu } from 'lucide-react';
 import ProfileButton from '@/components/ui/ProfileButton';
 import { useTheme } from "@/components/ThemeProvider"
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -62,8 +62,8 @@ const Header = () => {
                         </SheetContent>
                     </Sheet>
                     <Link to='/' className='ml-4 lg:ml-0'>
-                        <h1 className='text-xl font-bold'>
-                            TEAMBUILDER PRO
+                        <h1 className='text-base md:text-xl font-bold'>
+                            TEAMBUILDER 
                         </h1>
                     </Link>
                 </div>
@@ -86,9 +86,9 @@ const Header = () => {
                         className='mr-2'
                         aria-label='Shopping Cart'
                      >
-                        <ShoppingCartIcon className='h-6 w-6' />
+                        <UserPlus className='h-6 w-6' />
                         <span className='sr-only'>
-                            Shopping Cart
+                            Add User
                         </span>
                     </Button>   
                     <Button

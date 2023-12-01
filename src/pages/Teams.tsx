@@ -64,7 +64,7 @@ const productsData = [
 ];
 
 
-const Users = () => {
+const Teams = () => {
 
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState<Product[]>([]);
@@ -94,4 +94,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Teams;

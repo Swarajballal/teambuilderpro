@@ -3,6 +3,8 @@ import Container from "@/components/ui/container";
 import ProductList from "@/components/ui/ProductList";
 import Loading from "@/components/Loading";
 import { Product } from "@/types";
+import { Input } from '@/components/ui/input';
+import { Button } from "@/components/ui/button"
 
 const productsData = [
   {
@@ -79,10 +81,14 @@ const Users = () => {
 
   return (
     <Container>
+      <div className="flex items-center space-x-2 justify-center pt-20 gap-3">
+          <Input type="text" className="px-3 p-5 w-60 md:w-96" placeholder="Search...." />
+          <Button className="px-3 py-2">Search</Button>
+      </div>
        {loading ? (
         <Loading />
       ) : (
-      <div className="space-y-10 pb-10">
+      <div className="space-y-2 pb-10">
         <div className="p-4 sm:p-6 lg:p-8 rounded-lg overflow-hidden">
         </div>
         <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8">
@@ -90,6 +96,8 @@ const Users = () => {
         </div>
       </div>
       )}
+      <div>
+      </div>
     </Container>
   );
 };
