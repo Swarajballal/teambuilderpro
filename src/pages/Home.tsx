@@ -25,7 +25,7 @@ const Home = () => {
       <div className="space-y-10 pb-10">
         <div className="p-4 sm:p-6 lg:p-8 rounded-lg overflow-hidden">
           <div
-            className={`bg-[url('img/hero-banner.png')] rounded-lg relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover bg-center`}
+            className={`bg-[url('img/hero-banner.jpg')] rounded-lg relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover bg-center`}
             onLoad={() => setImgLoaded(true)}
           >
             {!imgLoaded && <Skeleton />}

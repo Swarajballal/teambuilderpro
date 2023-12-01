@@ -5,6 +5,7 @@ import Loading from "@/components/Loading";
 import { Product } from "@/types";
 import { Input } from '@/components/ui/input';
 import { Button } from "@/components/ui/button"
+import Pagination from "@/components/ui/Pagination";
 
 const productsData = [
   {
@@ -81,7 +82,7 @@ const Users = () => {
 
   return (
     <Container>
-      <div className="flex items-center space-x-2 justify-center pt-20 gap-3">
+      <div className="flex items-center space-x-2 justify-center md:pt-20  pt-10 gap-3">
           <Input type="text" className="px-3 p-5 w-60 md:w-96" placeholder="Search...." />
           <Button className="px-3 py-2">Search</Button>
       </div>
@@ -96,8 +97,11 @@ const Users = () => {
         </div>
       </div>
       )}
-      <div>
-      </div>
+
+    <div className="flex justify-center items-center space-x-2 p-10 gap-3">
+        <Pagination />
+    </div>
+
     </Container>
   );
 };
