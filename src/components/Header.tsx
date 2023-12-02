@@ -84,7 +84,7 @@ const Header = () => {
                         variant="ghost"
                         size="icon"
                         className='mr-2'
-                        aria-label='Shopping Cart'
+                        aria-label='Add User'
                      >
                         <UserPlus className='h-6 w-6' />
                         <span className='sr-only'>

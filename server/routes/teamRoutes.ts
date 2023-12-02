@@ -1,5 +1,5 @@
 import express from 'express';
-import { User } from '../db';
+import { Team } from '../db';
 
 const router = express.Router();
 

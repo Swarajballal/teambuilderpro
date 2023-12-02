@@ -1,6 +1,11 @@
 import  express  from 'express';
 import  mongoose  from 'mongoose';
 import cors from 'cors';
+import  userRoutes  from './routes/userRoutes';
+import teamRoutes from './routes/teamRoutes';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -19,7 +24,7 @@ mongoose.connect(databaseUrl, { dbName: 'teambuilder', })
   .then(() => console.log('MongoDB connected...'))
   .catch(err => console.log(err));
 
-app.use('/api/users', './routes/users');
-app.use('/api/team', './routes/team');
+app.use('/api/users', userRoutes);
+app.use('/api/team', teamRoutes);
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

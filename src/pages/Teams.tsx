@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Container from "@/components/ui/container";
-import ProductList from "@/components/ui/ProductList";
+import ProductList from "@/components/ui/UserList";
 import Loading from "@/components/Loading";
 import { Product } from "@/types";
 
