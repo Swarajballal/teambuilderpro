@@ -1,4 +1,4 @@
-
+import { useState } from "react";
 import Container from "@/components/ui/container";
 import UserList from "@/components/ui/UserList";
 import Loading from "@/components/Loading";
@@ -7,11 +7,15 @@ import { Button } from "@/components/ui/button"
 import Pagination from "@/components/ui/Pagination";
 import useUsers from "@/hooks/useUsers";
 
-
 const Users = () => {
+  const itemsPerPage = 20;
+  const [currentPage, setCurrentPage] = useState(1);
+  const { users, isLoading, totalItems, totalPages, isError } = useUsers(currentPage, itemsPerPage);
 
-  const { users, isLoading, isError } = useUsers(1,20);
-  console.log(users);
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  }
+
   if (isLoading) {
     return (
       <div>
@@ -28,6 +32,8 @@ const Users = () => {
     )
   }
 
+  console.log(users);
+
   return (
     <Container>
       <div className="flex items-center space-x-2 justify-center md:pt-20  pt-10 gap-3">
@@ -42,12 +48,15 @@ const Users = () => {
         </div>
       </div>
 
-    <div className="flex justify-center items-center space-x-2 p-10 gap-3">
-        <Pagination />
+    <div className="flex justify-center items-center space-x-2 pb-2 gap-3">
+        <Pagination onPageChange={handlePageChange} totalPages={totalPages}/>
     </div>
-
+    <div className="flex justify-center items-center space-x-2 p-3">
+        Showing {(currentPage - 1) * itemsPerPage + 1}-{currentPage * itemsPerPage} of {totalItems} users
+    </div>
     </Container>
   );
 };
 
 export default Users;
+

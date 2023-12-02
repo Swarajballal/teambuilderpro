@@ -26,7 +26,7 @@ const UserCard: React.FC<UserCardProps> = ({ data }) => {
                             {data.available ? (<Button
                             variant="ghost"
                             size="icon"
-                            className='mr-2 bg-primary/25 absolute top-0 right-0 '
+                            className='bg-primary/25 absolute top-0 right-0 '
                             aria-label='Add to team'
                              >
                             <UserPlus className='h-6 w-6 text-primary absolute top-1 right-1'/>

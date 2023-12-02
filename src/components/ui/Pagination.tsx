@@ -1,36 +1,63 @@
-
+import { useState } from 'react';
 import Container from './container';
 
-const Pagination = () => {
+interface PaginationProps {
+    onPageChange: (pageNumber: number) => void;
+    totalPages: number;
+}
+
+const Pagination: React.FC<PaginationProps> = ({ onPageChange, totalPages }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const maxPagesToShow = 10;
+
+  const handlePageClick = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+    onPageChange(pageNumber);
+  };
+
+  const handlePrevClick = () => {
+    if (currentPage > 1) {
+      const newPage = currentPage - 1;
+      setCurrentPage(newPage);
+      onPageChange(newPage);
+    }
+  };
+
+  const handleNextClick = () => {
+    if (currentPage < totalPages) {
+      const newPage = currentPage + 1;
+      setCurrentPage(newPage);
+      onPageChange(newPage);
+    }
+  };
+
+  const startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+  const endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+
+  const pageNumbers = [];
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <div>
-    <Container>
+      <Container>
         <nav aria-label="Page navigation example hidden md:block">
           <ul className="inline-flex -space-x-px md:text-base md:h-10 h-5 text-sm">
-              <li>
-              <a href="#" className="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+            <li>
+              <button onClick={handlePrevClick} className="flex items-center justify-center px-2 h-8 text-xs leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:px-4 md:h-10 md:text-base">Previous</button>
+            </li>
+            {pageNumbers.map(number => (
+              <li key={number}>
+                <button onClick={() => handlePageClick(number)} className={`flex items-center justify-center px-2 h-8 text-xs ${currentPage === number ? 'text-blue-600 bg-blue-50' : 'text-gray-500 bg-white'} border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:px-4 md:h-10 md:text-base`}>{number}</button>
               </li>
-              <li>
-              <a href="#" className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-              </li>
-              <li>
-              <a href="#" className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-              </li>
-              <li>
-              <a href="#" aria-current="page" className="flex items-center justify-center px-4 h-10 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-              </li>
-              <li>
-              <a href="#" className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-              </li>
-              <li>
-              <a href="#" className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-              </li>
-              <li>
-              <a href="#" className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
-              </li>
+            ))}
+            <li>
+              <button onClick={handleNextClick} className="flex items-center justify-center px-2 h-8 text-xs leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:px-4 md:h-10 md:text-base">Next</button>
+            </li>
           </ul>
         </nav>
-    </Container>
+      </Container>
     </div>
   );
 };
