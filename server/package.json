@@ -2,10 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "app.ts",
   "scripts": {
-    "dev": " npx -p typescript tsc -b && nodemon dist/index.js",
-    "start": "npx -p typescript tsc -b && node dist/index.js"
+    "dev": "npx -p typescript tsc -b && nodemon dist/app.js",
+    "build": "npx -p typescript tsc -b",
+    "start": "node dist/app.js"
   },
   "keywords": [],
   "author": "",

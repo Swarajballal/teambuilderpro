@@ -8,12 +8,12 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
 app.use(cors());
 app.use(express.json());
 
-const databaseUrl = process.env.DATABASE_URL;
+const databaseUrl = process.env.MONGO_URL;
 
 if(!databaseUrl) {
     console.error('DATABASE_URL environment variable not set');
