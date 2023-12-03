@@ -27,4 +27,8 @@ mongoose.connect(databaseUrl, { dbName: 'teambuilder', })
 app.use('/api/users', userRoutes);
 app.use('/api/team', teamRoutes);
 
+app.get('/', (req, res) => {
+    res.send('Hello World your app is working!');
+});
+
 app.listen(port, () => console.log(`Server running on port ${port}`));
